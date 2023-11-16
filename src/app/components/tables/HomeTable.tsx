@@ -1,11 +1,28 @@
-import * as React from "react";
+import { range } from "lodash";
+import { useState } from "react";
+import { produce } from "immer";
+
 import TableFooter from "./TableFooter";
 import ExportIcon from "../../assets/icons/export-icon.svg";
 import UserIcon from "../../assets/icons/user-icon.svg";
 import Select from "../Select";
+
 export default function HomeTable() {
+  const COUNT = 7;
+
+  const [selectedRows, setSelectedRows] = useState<boolean[]>(
+    range(COUNT).map(() => false),
+  );
+
+  const handleSelectRow = (idx: number, checked: boolean) =>
+    setSelectedRows((rows) =>
+      produce(rows, (draft) => {
+        draft[idx] = checked;
+      }),
+    );
+
   return (
-    <div className={`card`}>
+    <div className="card">
       {/* begin::Header */}
 
       {/* end::Header */}
@@ -26,7 +43,7 @@ export default function HomeTable() {
           <div className="d-flex flex-wrap my-2">
             <div className="card-toolbar badge badge-light-primary d-flex justify-content-center align-items-center gap-2 px-4 me-4">
               <img src={ExportIcon} alt="logo" />
-              <span className={` fw-bolder me-auto `}>Export</span>
+              <span className="fw-bolder me-auto">Export</span>
             </div>
 
             <Select classContainer="me-4" options={["Today", "a", "2"]} />
@@ -48,6 +65,12 @@ export default function HomeTable() {
                       value="1"
                       data-kt-check="true"
                       data-kt-check-target=".widget-13-check"
+                      checked={selectedRows.every((r) => r)}
+                      onChange={(e) =>
+                        setSelectedRows(
+                          range(7).map(() => e.currentTarget.checked),
+                        )
+                      }
                     />
                   </div>
                 </th>
@@ -61,216 +84,60 @@ export default function HomeTable() {
             {/* end::Table head */}
             {/* begin::Table body */}
             <tbody>
-              <tr className="h-80px">
-                <td>
-                  <div className="form-check form-check-sm form-check-custom form-check-solid">
-                    <input
-                      className="form-check-input widget-13-check"
-                      type="checkbox"
-                      value="1"
-                    />
-                  </div>
-                </td>
+              {range(COUNT).map((idx) => (
+                <tr className="h-80px" key={idx}>
+                  <td>
+                    <div className="form-check form-check-sm form-check-custom form-check-solid">
+                      <input
+                        className="form-check-input widget-13-check"
+                        type="checkbox"
+                        value="1"
+                        checked={selectedRows[idx]}
+                        onChange={(e) =>
+                          handleSelectRow(idx, e.currentTarget.checked)
+                        }
+                      />
+                    </div>
+                  </td>
 
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6"
-                  >
-                    148525
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 text-hover-primary d-block mb-1 fs-6"
-                  >
-                    23 Sep 2023
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href=" https://google.com"
-                    className="text-primary text-hover-primary d-block mb-1 fs-6"
-                  >
-                    https://google.com
-                  </a>
-                </td>
-                <td className="text-gray-900 text-hover-primary fs-6">
-                  Google
-                </td>
-                <td className="text-end">
-                  <span className="badge badge-light-success">Removed</span>
-                </td>
-              </tr>
-              <tr className="h-80px">
-                <td>
-                  <div className="form-check form-check-sm form-check-custom form-check-solid">
-                    <input
-                      className="form-check-input widget-13-check"
-                      type="checkbox"
-                      value="1"
-                    />
-                  </div>
-                </td>
-
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6"
-                  >
-                    148525
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 text-hover-primary d-block mb-1 fs-6"
-                  >
-                    23 Sep 2023
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href=" https://google.com"
-                    className="text-primary text-hover-primary d-block mb-1 fs-6"
-                  >
-                    https://google.com
-                  </a>
-                </td>
-                <td className="text-gray-900 text-hover-primary fs-6">
-                  Google
-                </td>
-                <td className="text-end">
-                  <span className="badge badge-light-success">Removed</span>
-                </td>
-              </tr>
-              <tr className="h-80px">
-                <td>
-                  <div className="form-check form-check-sm form-check-custom form-check-solid">
-                    <input
-                      className="form-check-input widget-13-check"
-                      type="checkbox"
-                      value="1"
-                    />
-                  </div>
-                </td>
-
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6"
-                  >
-                    148525
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 text-hover-primary d-block mb-1 fs-6"
-                  >
-                    23 Sep 2023
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href=" https://google.com"
-                    className="text-primary text-hover-primary d-block mb-1 fs-6"
-                  >
-                    https://google.com
-                  </a>
-                </td>
-                <td className="text-gray-900 text-hover-primary fs-6">
-                  Google
-                </td>
-                <td className="text-end">
-                  <span className="badge badge-light-success">Removed</span>
-                </td>
-              </tr>
-              <tr className="h-80px">
-                <td>
-                  <div className="form-check form-check-sm form-check-custom form-check-solid">
-                    <input
-                      className="form-check-input widget-13-check"
-                      type="checkbox"
-                      value="1"
-                    />
-                  </div>
-                </td>
-
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6"
-                  >
-                    148525
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 text-hover-primary d-block mb-1 fs-6"
-                  >
-                    23 Sep 2023
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href=" https://google.com"
-                    className="text-primary text-hover-primary d-block mb-1 fs-6"
-                  >
-                    https://google.com
-                  </a>
-                </td>
-                <td className="text-gray-900 text-hover-primary fs-6">
-                  Google
-                </td>
-                <td className="text-end">
-                  <span className="badge badge-light-danger">Delisted</span>
-                </td>
-              </tr>
-              <tr className="h-80px">
-                <td>
-                  <div className="form-check form-check-sm form-check-custom form-check-solid">
-                    <input
-                      className="form-check-input widget-13-check"
-                      type="checkbox"
-                      value="1"
-                    />
-                  </div>
-                </td>
-
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6"
-                  >
-                    148525
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="#"
-                    className="text-gray-900 text-hover-primary d-block mb-1 fs-6"
-                  >
-                    23 Sep 2023
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href=" https://google.com"
-                    className="text-primary text-hover-primary d-block mb-1 fs-6"
-                  >
-                    https://google.com
-                  </a>
-                </td>
-                <td className="text-gray-900 text-hover-primary fs-6">
-                  Google
-                </td>
-                <td className="text-end">
-                  <span className="badge badge-light-success">Removed</span>
-                </td>
-              </tr>
+                  <td>
+                    <a
+                      href="#"
+                      className="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6"
+                    >
+                      148525
+                    </a>
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      className="text-gray-900 text-hover-primary d-block mb-1 fs-6"
+                    >
+                      23 Sep 2023
+                    </a>
+                  </td>
+                  <td>
+                    <a
+                      href=" https://google.com"
+                      className="text-primary text-hover-primary d-block mb-1 fs-6"
+                    >
+                      https://google.com
+                    </a>
+                  </td>
+                  <td className="text-gray-900 text-hover-primary fs-6">
+                    Google
+                  </td>
+                  {idx % 3 === 0 ? (
+                    <td className="text-end">
+                      <span className="badge badge-light-danger">Delisted</span>
+                    </td>
+                  ) : (
+                    <td className="text-end">
+                      <span className="badge badge-light-success">Removed</span>
+                    </td>
+                  )}
+                </tr>
+              ))}
             </tbody>
             {/* end::Table body */}
           </table>

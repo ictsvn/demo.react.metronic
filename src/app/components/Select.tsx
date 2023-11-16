@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import * as React from "react";
 
 export interface Props {
@@ -12,16 +13,21 @@ export default function Select({
   classSelect = "bg-light",
 }: Props) {
   return (
-    <div className={`${classContainer}`}>
+    <div className={classContainer}>
       <select
         name="status"
         data-control="select2"
         data-hide-search="true"
-        className={`${classSelect} border-0 form-select form-select-sm form-select-white`}
+        className={clsx(
+          "border-0 form-select form-select-sm form-select-white",
+          classSelect,
+        )}
         defaultValue={options[0]}
       >
         {options.map((item) => (
-          <option value="Active">{item}</option>
+          <option value="Active" key={item}>
+            {item}
+          </option>
         ))}
       </select>
     </div>

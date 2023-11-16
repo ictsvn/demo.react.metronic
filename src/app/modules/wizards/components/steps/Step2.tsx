@@ -38,7 +38,6 @@ const registrationSchema = Yup.object().shape({
     .max(50, "Maximum 50 symbols")
     .required("Email is required"),
   phone: Yup.string()
-    .email("Wrong email format")
     .min(3, "Minimum 3 symbols")
     .max(50, "Maximum 50 symbols")
     .required("Phone is required"),
