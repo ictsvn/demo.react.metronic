@@ -118,7 +118,7 @@ export function Step2() {
           >
             <img
               alt="Logo"
-              src={toAbsoluteUrl("/media/svg/brand-logos/google-icon.svg")}
+              src={toAbsoluteUrl("media/svg/brand-logos/google-icon.svg")}
               className="h-15px me-3"
             />
             Sign in with Google
@@ -136,12 +136,12 @@ export function Step2() {
           >
             <img
               alt="Logo"
-              src={toAbsoluteUrl("/media/svg/brand-logos/apple-black.svg")}
+              src={toAbsoluteUrl("media/svg/brand-logos/apple-black.svg")}
               className="theme-light-show h-15px me-3"
             />
             <img
               alt="Logo"
-              src={toAbsoluteUrl("/media/svg/brand-logos/apple-black-dark.svg")}
+              src={toAbsoluteUrl("media/svg/brand-logos/apple-black-dark.svg")}
               className="theme-dark-show h-15px me-3"
             />
             Sign in with Apple

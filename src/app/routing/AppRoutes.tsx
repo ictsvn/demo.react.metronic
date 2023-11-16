@@ -26,10 +26,8 @@ const AppRoutes: FC = () => {
         <Route element={<App />}>
           <Route path="auth/*" element={<AuthPage />} />
           <Route path="*" element={<MasterLayout />}>
-            <Route path="auth/*" element={<Navigate to="/home" />} />
-            {/* Pages */}
             <Route path="home" element={<HomePage />} />
-            <Route path="*" element={<Navigate to="/error/404" />} />
+            <Route path="*" element={<Navigate to="home" />} />
           </Route>
         </Route>
       </Routes>

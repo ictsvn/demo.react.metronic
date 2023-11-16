@@ -87,7 +87,7 @@ const StepSignUp = () => {
           "d-flex justify-content-center justify-content-xl-start flex-row-auto w-100 w-xl-300px w-xxl-600px bgi-size-cover bgi-position-center pt-15",
         )}
         style={{
-          backgroundImage: `url(${toAbsoluteUrl("/media/misc/auth-bg.png")})`,
+          backgroundImage: `url(${toAbsoluteUrl("media/misc/auth-bg.png")})`,
         }}
       >
         <div className="d-flex flex-column flex-center py-15 w-100">
@@ -95,7 +95,7 @@ const StepSignUp = () => {
           <Link to="/" className="mb-12">
             <img
               alt="Logo"
-              src={toAbsoluteUrl("/media/logos/custom-1.png")}
+              src={toAbsoluteUrl("media/logos/custom-1.png")}
               className="h-75px"
             />
           </Link>

@@ -23,7 +23,7 @@ export function HeaderWrapper() {
         className={clsx(
           "app-container",
           classes.headerContainer.join(" "),
-          config.app?.header?.default?.containerClass
+          config.app?.header?.default?.containerClass,
         )}
       >
         {config.app.sidebar?.display && (
@@ -44,7 +44,7 @@ export function HeaderWrapper() {
                   <Link to="/dashboard" className="d-lg-none">
                     <img
                       alt="Logo"
-                      src={toAbsoluteUrl("/media/logos/default-small.svg")}
+                      src={toAbsoluteUrl("media/logos/default-small.svg")}
                       className="h-30px"
                     />
                   </Link>
@@ -63,19 +63,19 @@ export function HeaderWrapper() {
               {config.layoutType === "dark-header" ? (
                 <img
                   alt="Logo"
-                  src={toAbsoluteUrl("/media/logos/default-dark.svg")}
+                  src={toAbsoluteUrl("media/logos/default-dark.svg")}
                   className="h-20px h-lg-30px app-sidebar-logo-default"
                 />
               ) : (
                 <>
                   <img
                     alt="Logo"
-                    src={toAbsoluteUrl("/media/logos/default.svg")}
+                    src={toAbsoluteUrl("media/logos/default.svg")}
                     className="h-20px h-lg-30px app-sidebar-logo-default theme-light-show"
                   />
                   <img
                     alt="Logo"
-                    src={toAbsoluteUrl("/media/logos/default-dark.svg")}
+                    src={toAbsoluteUrl("media/logos/default-dark.svg")}
                     className="h-20px h-lg-30px app-sidebar-logo-default theme-dark-show"
                   />
                 </>

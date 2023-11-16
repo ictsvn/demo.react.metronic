@@ -55,7 +55,7 @@ const AuthLayout = () => {
       <div
         className="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center order-1 order-lg-2"
         style={{
-          backgroundImage: `url(${toAbsoluteUrl("/media/misc/auth-bg.png")})`,
+          backgroundImage: `url(${toAbsoluteUrl("media/misc/auth-bg.png")})`,
         }}
       >
         {/* begin::Content */}
@@ -64,7 +64,7 @@ const AuthLayout = () => {
           <Link to="/" className="mb-12">
             <img
               alt="Logo"
-              src={toAbsoluteUrl("/media/logos/custom-1.png")}
+              src={toAbsoluteUrl("media/logos/custom-1.png")}
               className="h-75px"
             />
           </Link>
@@ -73,7 +73,7 @@ const AuthLayout = () => {
           {/* begin::Image */}
           <img
             className="mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20"
-            src={toAbsoluteUrl("/media/misc/auth-screens.png")}
+            src={toAbsoluteUrl("media/misc/auth-screens.png")}
             alt=""
           />
           {/* end::Image */}

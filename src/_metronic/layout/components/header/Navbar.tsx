@@ -73,13 +73,13 @@ const Navbar = () => {
         <div
           className={clsx(
             "cursor-pointer symbol rounded-circle overflow-hidden",
-            userAvatarClass
+            userAvatarClass,
           )}
           data-kt-menu-trigger="{default: 'click'}"
           data-kt-menu-attach="parent"
           data-kt-menu-placement="bottom-end"
         >
-          <img src={toAbsoluteUrl("/media/avatars/300-3.jpg")} alt="" />
+          <img src={toAbsoluteUrl("media/avatars/300-3.jpg")} alt="" />
         </div>
         <HeaderUserMenu />
         <div className="ms-4">
