@@ -10,8 +10,50 @@ const SidebarMenuMain = () => {
     <>
       <SidebarMenuItem
         to="/home"
-        icon="home-2"
+        icon="home-3"
         title={"Home"}
+        fontIcon="bi-app-indicator"
+      />
+      <SidebarMenuItem
+        to="#"
+        icon="add-files"
+        title="Submit Violations"
+        fontIcon="bi-app-indicator"
+      />
+      <SidebarMenuItem
+        to="#"
+        icon="scroll"
+        title="Whitelist"
+        fontIcon="bi-app-indicator"
+      />
+      <SidebarMenuItem
+        to="#"
+        icon="questionnaire-tablet"
+        title="Billing"
+        fontIcon="bi-app-indicator"
+      />
+      <SidebarMenuItem
+        to="#"
+        icon="graph-up"
+        title="Affiliate Program"
+        fontIcon="bi-app-indicator"
+      />
+      <SidebarMenuItem
+        to="#"
+        icon="setting-2"
+        title="Settings"
+        fontIcon="bi-app-indicator"
+      />
+      <SidebarMenuItem
+        to="#"
+        icon="message-question"
+        title="FAQ"
+        fontIcon="bi-app-indicator"
+      />
+      <SidebarMenuItem
+        to="#"
+        icon="rescue"
+        title="Support"
         fontIcon="bi-app-indicator"
       />
       {/* <SidebarMenuItem
