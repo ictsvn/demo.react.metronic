@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import clsx from "clsx";
+
 import { StepperComponent } from "../../../_metronic/assets/ts/components";
 import {
   ICreateAccount,
@@ -13,8 +16,6 @@ import { Step3 } from "../wizards/components/steps/Step3";
 import { Step4 } from "../wizards/components/steps/Step4";
 import { Step5 } from "../wizards/components/steps/Step5";
 import { KTIcon, toAbsoluteUrl } from "../../../_metronic/helpers";
-import { Link } from "react-router-dom";
-import clsx from "clsx";
 
 const StepSignUp = () => {
   const stepperRef = useRef<HTMLDivElement | null>(null);
@@ -22,11 +23,9 @@ const StepSignUp = () => {
   const [currentSchema, setCurrentSchema] = useState(createAccountSchemas[0]);
   const [initValues] = useState<ICreateAccount>(inits);
 
-  console.log("stepper", stepper);
-
   const loadStepper = () => {
     setStepper(
-      StepperComponent.createInsance(stepperRef.current as HTMLDivElement)
+      StepperComponent.createInsance(stepperRef.current as HTMLDivElement),
     );
   };
 
@@ -65,8 +64,6 @@ const StepSignUp = () => {
       actions.resetForm();
     }
 
-    console.log(values);
-
     setCurrentSchema(createAccountSchemas[stepper.currentStepIndex - 1]);
   };
 
@@ -88,7 +85,6 @@ const StepSignUp = () => {
       <div
         className={clsx(
           "d-flex justify-content-center justify-content-xl-start flex-row-auto w-100 w-xl-300px w-xxl-600px bgi-size-cover bgi-position-center pt-15",
-          stepper?.currentStepIndex === 1 ? "order-2 order-lg-2" : ""
         )}
         style={{
           backgroundImage: `url(${toAbsoluteUrl("/media/misc/auth-bg.png")})`,
@@ -127,7 +123,7 @@ const StepSignUp = () => {
                     <h3 className="stepper-title">Account Type</h3>
 
                     <div className="stepper-desc fw-semibold">
-                      Setup Your Account Details
+                      Setup your account type
                     </div>
                   </div>
                   {/* end::Label*/}
@@ -153,9 +149,9 @@ const StepSignUp = () => {
 
                   {/* begin::Label*/}
                   <div className="stepper-label">
-                    <h3 className="stepper-title">Account Settings</h3>
+                    <h3 className="stepper-title">Personal Info</h3>
                     <div className="stepper-desc fw-semibold">
-                      Setup Your Account Settings
+                      Setup your personal info
                     </div>
                   </div>
                   {/* end::Label*/}
@@ -181,9 +177,9 @@ const StepSignUp = () => {
 
                   {/* begin::Label*/}
                   <div className="stepper-label">
-                    <h3 className="stepper-title">Business Info</h3>
+                    <h3 className="stepper-title">Verification</h3>
                     <div className="stepper-desc fw-semibold">
-                      Your Business Related Info
+                      Verify your account
                     </div>
                   </div>
                   {/* end::Label*/}
@@ -209,9 +205,9 @@ const StepSignUp = () => {
 
                   {/* begin::Label*/}
                   <div className="stepper-label">
-                    <h3 className="stepper-title">Billing Details</h3>
+                    <h3 className="stepper-title">Creator Info</h3>
                     <div className="stepper-desc fw-semibold">
-                      Set Your Payment Methods
+                      Setup creator details
                     </div>
                   </div>
                   {/* end::Label*/}
@@ -239,7 +235,7 @@ const StepSignUp = () => {
                   <div className="stepper-label">
                     <h3 className="stepper-title">Completed</h3>
                     <div className="stepper-desc fw-semibold">
-                      Woah, we are here
+                      Your account is created
                     </div>
                   </div>
                   {/* end::Label*/}
@@ -335,9 +331,9 @@ const StepSignUp = () => {
                     <button
                       type="button"
                       onClick={nextStep}
-                      className="btn btn-lg btn-primary me-3"
+                      className="btn btn-lg btn-primary"
                     >
-                      <span className="indicator-label">
+                      <span className="indicator-label d-flex align-items-center justify-content-center">
                         {stepper?.currentStepIndex !==
                           (stepper?.totalStepsNumber || 2) - 1 && "Continue"}
                         {stepper?.currentStepIndex ===

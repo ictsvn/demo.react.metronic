@@ -6,10 +6,12 @@ import { toAbsoluteUrl } from "../../../../../_metronic/helpers";
 import { getUserByToken, register } from "../../../auth/core/_requests";
 import { useAuth } from "../../../auth";
 import { PasswordMeterComponent } from "../../../../../_metronic/assets/ts/components";
+import { PasswordInput } from "../../../../components/PasswordInput";
 
 const initialValues = {
   firstname: "",
   lastname: "",
+  creatorName: "",
   email: "",
   phone: "",
   password: "",
@@ -22,6 +24,14 @@ const registrationSchema = Yup.object().shape({
     .min(3, "Minimum 3 symbols")
     .max(50, "Maximum 50 symbols")
     .required("First name is required"),
+  lastname: Yup.string()
+    .min(3, "Minimum 3 symbols")
+    .max(50, "Maximum 50 symbols")
+    .required("Last name is required"),
+  creatorName: Yup.string()
+    .min(3, "Minimum 3 symbols")
+    .max(50, "Maximum 50 symbols")
+    .required("Last name is required"),
   email: Yup.string()
     .email("Wrong email format")
     .min(3, "Minimum 3 symbols")
@@ -32,10 +42,6 @@ const registrationSchema = Yup.object().shape({
     .min(3, "Minimum 3 symbols")
     .max(50, "Maximum 50 symbols")
     .required("Phone is required"),
-  lastname: Yup.string()
-    .min(3, "Minimum 3 symbols")
-    .max(50, "Maximum 50 symbols")
-    .required("Last name is required"),
   password: Yup.string()
     .min(3, "Minimum 3 symbols")
     .max(50, "Maximum 50 symbols")
@@ -63,7 +69,7 @@ export function Step2() {
           values.firstname,
           values.lastname,
           values.password,
-          values.changepassword
+          values.changepassword,
         );
         saveAuth(auth);
         const { data: user } = await getUserByToken(auth.api_token);
@@ -84,7 +90,7 @@ export function Step2() {
 
   return (
     <form
-      className="form w-100 fv-plugins-bootstrap5 fv-plugins-framework overflow-scroll"
+      className="form w-100 fv-plugins-bootstrap5 fv-plugins-framework overflow-hidden overflow-y-auto"
       noValidate
       id="kt_login_signup_form"
       onSubmit={formik.handleSubmit}
@@ -176,7 +182,7 @@ export function Step2() {
               {
                 "is-valid":
                   formik.touched.firstname && !formik.errors.firstname,
-              }
+              },
             )}
           />
           {formik.touched.firstname && formik.errors.firstname && (
@@ -201,7 +207,7 @@ export function Step2() {
               },
               {
                 "is-valid": formik.touched.lastname && !formik.errors.lastname,
-              }
+              },
             )}
           />
           {formik.touched.lastname && formik.errors.lastname && (
@@ -216,6 +222,32 @@ export function Step2() {
       </div>
       <div className="fv-row mb-8">
         <input
+          placeholder="Creator Name"
+          type="text"
+          autoComplete="off"
+          {...formik.getFieldProps("creatorName")}
+          className={clsx(
+            "form-control bg-transparent",
+            {
+              "is-invalid":
+                formik.touched.creatorName && formik.errors.creatorName,
+            },
+            {
+              "is-valid":
+                formik.touched.creatorName && !formik.errors.creatorName,
+            },
+          )}
+        />
+        {formik.touched.creatorName && formik.errors.creatorName && (
+          <div className="fv-plugins-message-container">
+            <div className="fv-help-block">
+              <span role="alert">{formik.errors.creatorName}</span>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="fv-row mb-8">
+        <input
           placeholder="Email"
           type="email"
           autoComplete="off"
@@ -225,7 +257,7 @@ export function Step2() {
             { "is-invalid": formik.touched.email && formik.errors.email },
             {
               "is-valid": formik.touched.email && !formik.errors.email,
-            }
+            },
           )}
         />
         {formik.touched.email && formik.errors.email && (
@@ -248,7 +280,7 @@ export function Step2() {
             { "is-invalid": formik.touched.phone && formik.errors.phone },
             {
               "is-valid": formik.touched.phone && !formik.errors.phone,
-            }
+            },
           )}
         />
         {formik.touched.phone && formik.errors.phone && (
@@ -265,7 +297,7 @@ export function Step2() {
       <div className="fv-row mb-8" data-kt-password-meter="true">
         <div className="mb-1">
           <div className="position-relative mb-3">
-            <input
+            <PasswordInput
               type="password"
               placeholder="Password"
               autoComplete="off"
@@ -279,7 +311,7 @@ export function Step2() {
                 {
                   "is-valid":
                     formik.touched.password && !formik.errors.password,
-                }
+                },
               )}
             />
             {formik.touched.password && formik.errors.password && (
@@ -310,7 +342,7 @@ export function Step2() {
 
       {/* begin::Form group Confirm password */}
       <div className="fv-row mb-5">
-        <input
+        <PasswordInput
           type="password"
           placeholder="Password confirmation"
           autoComplete="off"
@@ -324,7 +356,7 @@ export function Step2() {
             {
               "is-valid":
                 formik.touched.changepassword && !formik.errors.changepassword,
-            }
+            },
           )}
         />
         {formik.touched.changepassword && formik.errors.changepassword && (
@@ -391,6 +423,14 @@ export function Step2() {
         </button>
       </div>
       {/* end::Form group */}
+
+      <div className="text-gray-500 text-center fs-6">
+        Already have an Account?{" "}
+        <a href="#" className="link-primary fw-bolder">
+          Sign in
+        </a>
+        .
+      </div>
     </form>
   );
 }
