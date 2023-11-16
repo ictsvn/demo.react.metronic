@@ -9,7 +9,7 @@ import Select from "../../components/Select";
 
 export default function HomePage() {
   return (
-    <div className="mt-5">
+    <div>
       <div className="d-flex justify-content-end align-items-center gap-4 py-5">
         <div>Sort by</div>
         <Select
@@ -18,7 +18,7 @@ export default function HomePage() {
           options={["Today", "1", "2"]}
         />
       </div>
-      <div className="d-flex justify-content-between mt-3 mb-5 ">
+      <div className="d-flex justify-content-between mt-3 mb-5 box-card-gap">
         <InfoCard
           title="Links Scraped"
           value={252}

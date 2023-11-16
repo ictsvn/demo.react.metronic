@@ -7,6 +7,9 @@ import {
   ThemeModeSwitcher,
 } from "../../../partials";
 import { useLayout } from "../../core";
+import DownIcon from "../../../../app/assets/icons/down-icon.svg";
+import NotiIcon from "../../../../app/assets/icons/noti-icon.svg";
+import SearchIcon from "../../../../app/assets/icons/search-icon.svg";
 
 const itemClass = "ms-1 ms-md-4";
 const btnClass =
@@ -18,8 +21,18 @@ const Navbar = () => {
   const { config } = useLayout();
   return (
     <div className="app-navbar flex-shrink-0">
-      <div className={clsx("app-navbar-item align-items-stretch", itemClass)}>
-        <Search />
+      <div className={clsx("app-navbar-item me-2", itemClass)}>
+        <div className="header-icon position-relative">
+          <img src={NotiIcon} alt="logo" />
+          <div className="bg-danger text-white fw-bold d-flex justify-content-center align-items-center rounded-circle notification">
+            5
+          </div>
+        </div>
+      </div>
+      <div className={clsx("app-navbar-item me-2", itemClass)}>
+        <div className="header-icon">
+          <img src={SearchIcon} alt="logo" />
+        </div>
       </div>
 
       {/* <div className={clsx('app-navbar-item', itemClass)}>
@@ -58,7 +71,10 @@ const Navbar = () => {
 
       <div className={clsx("app-navbar-item", itemClass)}>
         <div
-          className={clsx("cursor-pointer symbol", userAvatarClass)}
+          className={clsx(
+            "cursor-pointer symbol rounded-circle overflow-hidden",
+            userAvatarClass
+          )}
           data-kt-menu-trigger="{default: 'click'}"
           data-kt-menu-attach="parent"
           data-kt-menu-placement="bottom-end"
@@ -66,6 +82,9 @@ const Navbar = () => {
           <img src={toAbsoluteUrl("/media/avatars/300-3.jpg")} alt="" />
         </div>
         <HeaderUserMenu />
+        <div className="ms-4">
+          <img src={DownIcon} alt="logo" />
+        </div>
       </div>
 
       {config.app?.header?.default?.menu?.display && (
